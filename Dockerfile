@@ -17,6 +17,8 @@ RUN mkdir -p /opt/app-root
 
 COPY ./.s2i/bin/ /opt/app-root/s2i
 
+RUN chmod -R +x /opt/app-root/s2i/
+
 # set a random user
 USER 1001
 
