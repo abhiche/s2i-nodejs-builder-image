@@ -1,0 +1,16 @@
+#!/bin/bash
+
+chmod 775 -R /tmp/src/.
+
+cd /opt/app-root
+
+echo "---> Installing application source"
+cp -Rfp /tmp/src/. ./
+
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/* ./node_modules
+fi
+
+echo "---> Building your Node application from source"
+npm install --production
