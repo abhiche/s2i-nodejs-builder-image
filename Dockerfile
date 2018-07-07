@@ -9,17 +9,25 @@ LABEL io.k8s.description="NodeJs 6 S2I with iterative build" \
     io.openshift.tags="builder,webserver,nodejs" \
     # this label tells s2i where to find its mandatory scripts
     # (run, assemble, save-artifacts)
-    io.openshift.s2i.scripts-url="image:///opt/app-root/s2i"
 
-RUN mkdir -p /opt/app-root
+LABEL io.openshift.s2i.scripts-url=image:///usr/local/s2i
 
-# Copy the S2I scripts to /opt/app-root since we set the label that way
+COPY ./s2i/bin/ /usr/local/s2i
 
-COPY ./.s2i/bin/ /opt/app-root/s2i
+RUN chown -R 0 /usr/local/s2i && chmod -R 775 /usr/local/s2i
 
-RUN chmod -R +x /opt/app-root/s2i/
+# Drop the root user and make the content of /opt/app-root owned by user 1001
+RUN mkdir -p /opt/app-root && \
+    chown -R 1001:0 /opt/app-root && \
+    chgrp 0 /opt/app-root && \
+    chmod g+rw /opt/app-root && \
+    chmod g+x /opt/app-root
 
-# set a random user
+RUN echo "username:x:1001:0:username,,,:/opt/app-root:/bin/bash" > /etc/passwd
+
+# - In order to drop the root user, we have to make some directories world
+#   writable as OpenShift default security model is to run the container
+#   under random UID.
 USER 1001
 
 EXPOSE 8080
