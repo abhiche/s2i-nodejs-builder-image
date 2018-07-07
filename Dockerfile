@@ -14,11 +14,13 @@ LABEL io.k8s.description="NodeJs 6 S2I with iterative build" \
 RUN mkdir -p /opt/app-root
 
 # Copy the S2I scripts to /opt/app-root since we set the label that way
-COPY ./s2i/bin/ /opt/app-root/s2i
+
+COPY ./.s2i/bin/ /opt/app-root/s2i
 
 # set a random user
 USER 1001
 
 EXPOSE 8080
+
 # Set the default CMD to print the usage
 CMD /opt/app-root/s2i/usage
