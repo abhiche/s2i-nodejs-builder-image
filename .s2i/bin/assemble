@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ls /tmp/s2i
 ls /tmp/scripts
 ls /tmp/src
 
