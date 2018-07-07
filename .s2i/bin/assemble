@@ -1,9 +1,5 @@
 #!/bin/bash
 
-ls /tmp/s2i
-ls /tmp/scripts
-ls /tmp/src
-
 # Restore artifacts from the previous build (if they exist).
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."

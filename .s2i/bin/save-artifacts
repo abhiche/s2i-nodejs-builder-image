@@ -7,9 +7,8 @@
 # For more information see the documentation:
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
-#!/bin/bash
-
-if [ "$(ls /opt/app-root/node_modules 2>/dev/null)" ]; then
-  echo "Sending node_modules to tar stream"
-  tar -C /opt/app-root -cf - node_modules
+cd /opt/app-root > /dev/null
+if [ -d node_modules ]; then
+ # all deps contents to tar stream
+ tar cf - node_modules
 fi
