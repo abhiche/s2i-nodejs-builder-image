@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "oc new-app --name s2i-nodejs-builder-image https://github.com/abhiche/s2i-nodejs-builder-image.git"
+echo "oc new-app s2i-nodejs-builder-image:latest~<YOUR_NODE_JS_APP_GIT_URL>"
