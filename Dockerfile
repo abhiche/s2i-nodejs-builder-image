@@ -11,7 +11,7 @@ LABEL io.k8s.description="NodeJs 6 S2I with iterative build" \
     # (run, assemble, save-artifacts)
     io.openshift.s2i.scripts-url="image:///opt/app-root/s2i"
 
-mkdir -p /opt/app-root
+RUN mkdir -p /opt/app-root
 
 # Copy the S2I scripts to /opt/app-root since we set the label that way
 COPY ./s2i/bin/ /opt/app-root/s2i
