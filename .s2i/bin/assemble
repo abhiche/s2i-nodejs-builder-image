@@ -1,9 +1,9 @@
 #!/bin/bash
 
-chmod 775 -R /tmp/src/.
+chmod 775 -R /tmp/src/
 
 echo "---> Installing application source"
-cp -Rfp /tmp/src /opt/app-root
+cp -Rfp /tmp/src/ /opt/app-root
 
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
