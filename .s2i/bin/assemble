@@ -2,14 +2,12 @@
 
 chmod 775 -R /tmp/src/.
 
-cd /opt/app-root
-
 echo "---> Installing application source"
-cp -Rfp /tmp/src/. ./
+cp -Rfp /tmp/src/. /opt/app-root
 
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
-  mv /tmp/artifacts/* ./node_modules
+  mv /tmp/artifacts/* /opt/app-root/node_modules
 fi
 
 echo "---> Building your Node application from source"
