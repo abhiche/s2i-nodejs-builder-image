@@ -6,13 +6,13 @@ LABEL maintainer="Abhilash Chelankara"
 LABEL io.k8s.description="NodeJs 6 S2I with iterative build" \
     io.k8s.display-name="NodeJS 6" \
     io.openshift.expose-services="8080:http" \
-    io.openshift.tags="builder,webserver,nodejs" \
+    io.openshift.tags="builder,webserver,nodejs"
     # this label tells s2i where to find its mandatory scripts
     # (run, assemble, save-artifacts)
 
 LABEL io.openshift.s2i.scripts-url=image:///usr/local/s2i
 
-COPY ./s2i/bin/ /usr/local/s2i
+COPY ./.s2i/bin/ /usr/local/s2i
 
 RUN chown -R 0 /usr/local/s2i && chmod -R 775 /usr/local/s2i
 
