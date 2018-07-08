@@ -25,7 +25,7 @@ RUN mkdir -p $APP_HOME && \
     chmod g+rw $APP_HOME && \
     chmod g+x $APP_HOME
 
-# RUN echo "username:x:1001:0:username,,,:$APP_HOME:/bin/bash" > /etc/passwd
+RUN echo "username:x:1001:0:username,,,:$APP_HOME:/bin/bash" > /etc/passwd
 
 # - In order to drop the root user, we have to make some directories world
 #   writable as OpenShift default security model is to run the container
