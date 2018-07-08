@@ -14,4 +14,4 @@ ls -la $APP_HOME
 cat $APP_HOME/package.json
 
 HOME=$APP_HOME && \
-    cd $APP_HOME && npm run build && npm install -d
+    cd $APP_HOME  && npm install -d && npm run build
