@@ -6,6 +6,10 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   ls /tmp/artifacts
   ls -la /tmp/artifacts/node_modules
   mv /tmp/artifacts/node_modules $APP_HOME/
+  # Fix permissions
+  chgrp -R 0 "$APP_HOME/node_modules"
+  chmod -R g+rx "$APP_HOME/node_modules"
+  find "$APP_HOME/node_modules" -type d -exec chmod g+x {} +
 fi
 
 echo "---> Installing application source..."
