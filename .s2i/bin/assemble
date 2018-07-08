@@ -4,14 +4,14 @@
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
   ls /tmp/artifacts
-  mv /tmp/artifacts/node_modules /opt/app-root/
+  mv /tmp/artifacts/node_modules $APP_HOME/
 fi
 
 echo "---> Installing application source..."
-cp -Rf /tmp/src/. /opt/app-root
+cp -Rf /tmp/src/. $APP_HOME
 
-ls -la /opt/app-root
-cat /opt/app-root/package.json
+ls -la $APP_HOME
+cat $APP_HOME/package.json
 
-HOME=/opt/app-root && \
-    cd /opt/app-root && npm run build && npm install -d
+HOME=$APP_HOME && \
+    cd $APP_HOME && npm run build && npm install -d
