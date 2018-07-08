@@ -4,6 +4,7 @@
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
   ls /tmp/artifacts
+  ls -la /tmp/artifacts/node_modules
   mv /tmp/artifacts/node_modules $APP_HOME/
 fi
 
