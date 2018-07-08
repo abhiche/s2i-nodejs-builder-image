@@ -10,5 +10,8 @@ fi
 echo "---> Installing application source..."
 cp -Rf /tmp/src/. /opt/app-root
 
+ls -la /opt/app-root
+cat /opt/app-root/package.json
+
 HOME=/opt/app-root && \
-    cd /opt/app-root && npm install -d
+    cd /opt/app-root && npm run build && npm install -d
