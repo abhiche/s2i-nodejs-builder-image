@@ -19,17 +19,18 @@ COPY ./.s2i/bin/ /usr/local/s2i
 RUN chown -R 0 /usr/local/s2i && chmod -R 775 /usr/local/s2i
 
 # Drop the root user and make the content of $APP_HOME owned by user 1001
+# - In order to drop the root user, we have to make some directories world
+#   writable as OpenShift default security model is to run the container
+#   under random UID.
+
 RUN mkdir -p $APP_HOME && \
     chown -R 1001:0 $APP_HOME && \
     chgrp 0 $APP_HOME && \
     chmod g+rw $APP_HOME && \
     chmod g+x $APP_HOME
 
-RUN echo "username:x:1001:0:username,,,:$APP_HOME:/bin/bash" > /etc/passwd
+# RUN echo "username:x:1001:0:username,,,:$APP_HOME:/bin/bash" > /etc/passwd
 
-# - In order to drop the root user, we have to make some directories world
-#   writable as OpenShift default security model is to run the container
-#   under random UID.
 USER 1001
 
 EXPOSE 8080
