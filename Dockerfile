@@ -29,7 +29,7 @@ RUN mkdir -p $APP_HOME && \
     chmod g+rw $APP_HOME && \
     chmod g+x $APP_HOME
 
-# RUN echo "username:x:1001:0:username,,,:$APP_HOME:/bin/bash" > /etc/passwd
+RUN echo "username:x:1001:0:username,,,:$APP_HOME:/bin/bash" > /etc/passwd
 
 USER 1001
 
